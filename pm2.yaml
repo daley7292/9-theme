@@ -1,0 +1,14 @@
+apps:
+  - name: theme_redleaf
+    script: bun
+    args: start
+    env:
+      NODE_ENV: production
+      PORT: 2003
+    watch: true
+    watch_delay: 60000
+    watch_include:
+      - .next
+    out_file: ./logs/stdout.log
+    error_file: ./logs/stderr.log
+    log_date_format: 'YYYY-MM-DD HH:mm:ss'
