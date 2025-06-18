@@ -49,9 +49,9 @@ export const NoticeCard = () => {
                     mapping[pathName].className,
                     pathName !== "/dashboard" && !noticeInfo.length && "hidden"
                 )}
-                icon="ri:notification-2-line"
+                icon=""
                 title={
-                    <div className="flex flex-row gap-2 justify-between items-center w-full">
+                    <div className="flex flex-row gap- justify-between items-center w-full">
                         <span> {t("dashboardNotice")}</span>
                         <span className="text-sm text-default-500">
                             {noticeInfo.length > 0 &&
@@ -157,10 +157,10 @@ const mapping: PopMessageType = {
         id: 0,
         className: [
             "col-span-1",
+            "ml-auto",
             "col-start-1 row-start-1",
-            "lg:col-span-2",
-            "lg:col-start-1 lg:row-start-1",
-            "xl:col-start-2 xl:row-start-1",
+            "lg:col-span-1 lg:col-start-1 lg:row-start-1",
+            "xl:col-span-1 xl:col-start-1 xl:row-start-1",
         ],
     },
     "/dashboard/knowledge": {

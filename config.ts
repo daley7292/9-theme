@@ -1,5 +1,5 @@
 export const site = {
-  api: "http://api.redleaf.cloud",
+  api: "https://api.redleaf.cloud",
   enableCaptcha: false,
   secretKey: "1x0000000000000000000000000000000AA",
   siteKey: "1x00000000000000000000AA",

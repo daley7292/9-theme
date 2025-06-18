@@ -85,10 +85,22 @@ export default function Page() {
     return data.data.plan;
   }, [data]);
 
+  const onLineInfo = useMemo(() => {
+    const info={
+      device_limit: "∞",
+      alive_ip:"0"
+    }
+    if (!data || !data.data) return info;
+    info.device_limit=data.data.device_limit?.toString() ?? "∞";
+    info.alive_ip=data.data.alive_ip?.toString() ?? "0";
+    return info;
+  }, [data]);
+
   const subscribeUrl = useMemo(() => {
     if (!data || !data.data) return "";
     return data.data.subscribe_url;
   }, [data]);
+
   const {
     isOpen: isRedeemOpen,
     onOpen: onRedeemOpen,
@@ -251,6 +263,27 @@ export default function Page() {
               standard: "jedec",
             })}`}
           </span>
+        </InfoCard>
+        <InfoCard
+          className={cn("col-span-1")}
+          icon="ri:mac-line"
+          title={t("dashboardOnline")}
+          isLoading={dataLoading}
+          endContent={
+            <Progress
+              value={Number(onLineInfo.alive_ip)}
+              maxValue={Number(onLineInfo.device_limit==="∞"?9999999:onLineInfo.device_limit)}
+              label="当前在线的设备数量"
+              showValueLabel={true}
+              size="sm"
+              classNames={{
+                label: "text-default-500",
+                value: "text-default-500",
+              }}
+            />
+          }
+        >
+          <span className="text-xl font-bold text-default-700">{onLineInfo.alive_ip} / {onLineInfo.device_limit}</span>
         </InfoCard>
         <InfoCard
           className="col-span-1"
