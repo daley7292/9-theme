@@ -41,9 +41,11 @@ export default function Page() {
   const format = useFormatter();
   const [, copy] = useCopyToClipboard();
   const [redeem, setRedeem] = useState("");
-  const { data, isLoading: dataLoading,mutate } = useSWR<{ data: SubscribeData }>(
-    "user/getSubscribe"
-  );
+  const {
+    data,
+    isLoading: dataLoading,
+    mutate,
+  } = useSWR<{ data: SubscribeData }>("user/getSubscribe");
 
   const trafficInfo = useMemo(() => {
     if (!data || !data.data) return { u: 0, d: 0, transfer_enable: 0 };
@@ -107,7 +109,7 @@ export default function Page() {
   return (
     <div className="flex flex-col items-start justify-center gap-4 p-6 md:px-12">
       <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full ">
-      <NoticeCard />
+        <NoticeCard />
         {dataLoading ? (
           <LoadingInfoCard />
         ) : planInfo ? (
@@ -171,6 +173,8 @@ export default function Page() {
               label={
                 expiredInfo.reset_day < 0
                   ? t("dashboardExpireResetNo")
+                  : expiredInfo.reset_day === 0
+                  ? t("dashboardExpireResetToday") // 添加一个对应的多语言 key，比如 "今天已重置流量"
                   : t("dashboardExpireReset") +
                     " " +
                     t("dashboardExpireResetDay", {
@@ -415,7 +419,7 @@ export default function Page() {
         onOpenChange={onRedeemOpenChange}
       >
         <RedeemContent
-          onClose={()=>{
+          onClose={() => {
             mutate();
             onRedeemClose();
           }}
