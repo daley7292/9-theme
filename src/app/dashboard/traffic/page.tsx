@@ -182,7 +182,7 @@ export default function Page() {
                 {t("logUpload")}
               </TableColumn>
               <TableColumn className="text-center" key="d">
-                {t("logUpload")}
+                {t("logDownload")}
               </TableColumn>
               <TableColumn className="text-center" key="server_rate">
                 {t("logRate")}
