@@ -16,6 +16,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         router.replace(hash.replace("#", "auth"));
       }
     }
+    if (hash.startsWith("#/order")) {
+      router.replace("/dashboard/order");
+    }
   },[]);
 
   return (
