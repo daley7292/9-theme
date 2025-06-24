@@ -91,6 +91,8 @@ const exec = async (req: Request, context: { params: Promise<Params> }) => {
         Origin: referer,
         "x-forwarded-for": originIP,
         "User-Agent": userAgent,
+        "X-Forwarded-Host": req.headers.get("host") ?? "",
+        "X-Forwarded-Proto": new URL(req.url).protocol.replace(":", ""),
       },
       data,
     });
